@@ -117,7 +117,7 @@
           var img = document.getElementById(id);
 
           if (position == treasureLocation) {
-              img.src = "treasure location.jpeg";
+              img.src = "Treasure.jpeg";
               gameOver = true;
               penalty = penalty - 3;
           }
@@ -165,6 +165,28 @@
           penalty += 2;
           id_penalty.innerHTML = `Penalty is ${penalty}`;
       }
+      
+      function bonusGame(){
+            treasureLocation = Math.floor(Math.random() * 25);
+            trapLocation = Math.floor(Math.random() * 25);
+            for(let i=0; i<24; i++){
+                if(i === trapLocation){
+                    id = document.getElementById(ids[i]);
+                    id.src = "trap.jpg";
+                }
+                else if(i === treasureLocation){
+                    id = document.getElementById(ids[i]);
+                    id.src = "Treasure.jpg";
+                }
+                else{
+                    id = document.getElementById(ids[i]);
+                    id.src = "treasure location.jpeg";
+                }
+
+            }
+        }
+        id_location.innerHTML = `Number of locations checked is  ${checkCount}`;
+        id_penalty.innerHTML = `Penalty is ${penalty};
 </script>
 
 </body>
