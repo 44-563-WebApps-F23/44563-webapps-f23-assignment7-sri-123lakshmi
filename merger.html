@@ -36,6 +36,11 @@
         <input type="text" id="txt" value="Enter Text Element">
         <p>Press the button to add elements in the end</p>
         <button onclick="addEnd()">Add end</button>
+        <p>Press the button to remove the element</p>
+        <button onclick="remove()">Remove</button>
+        <p>Press the button to add elements in the front</p>
+        <button onclick="addFront()">Add front</button>
+        
         
     </body>
     <script>
@@ -49,5 +54,26 @@
             flex.appendChild(out);
         }
 
+        function remove() {
+            mergerItems = document.getElementsByClassName("merger");
+            length = mergerItems.length;
+
+            if (length > 0) {
+                middleItem = Math.floor(length/2);
+                mergerItems[middleItem].remove();
+            }
+        }
+
+        function addFront() {
+            text = document.getElementById("txt").value;
+            out = document.createElement("div");
+            out.innerHTML = text;
+            out.className = "merger";
+            flex = document.getElementById("target");
+            firstChild = flex.firstChild;
+            flex.insertBefore(out, firstChild);
+        }
+
+        
     </script>
 </html>	
