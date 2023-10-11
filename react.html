@@ -29,3 +29,26 @@
                 reactTime = Date.now();
                 document.getElementById("react").innerHTML = reactTime;
             }
+            function startTime() {
+                console.log("Getting form values")
+                for (let i = 0; i < 9; i++) {
+                    setTimeout(function() {
+                        document.getElementById("counter").innerHTML = i;
+                    }, ((Math.floor(Math.random() * (10 - 2 + 1)) + 2 - i) * 1000));
+                }
+
+                setTimeout(function() {
+                    if (reactTime === undefined) {
+                        document.getElementById("target").innerHTML = 'Too Slow';
+                    } 
+                    else {
+                        endTime = Date.now();
+                        elapsedTime = endTime - reactTime;
+                        document.getElementById("target").innerHTML = `Time was ${elapsedTime} milliseconds`;
+                    }
+                }, Math.floor(Math.random() * (10 - 2 + 1)) + 2 * 1000);
+            }
+        </script>
+
+    </body>
+</html>
