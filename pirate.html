@@ -115,7 +115,7 @@
           var img = document.getElementById(id);
 
           if (position == treasureLocation) {
-              img.src = "gold-treasure.jpg";
+              img.src = "treasure location.jpeg";
               gameOver = true;
               penalty = penalty - 3;
           }
@@ -125,7 +125,7 @@
               penalty = penalty + 4;
           }
           else {
-              img.src = "weapons.jpg";
+              img.src = "hat.jpg";
           }
 
           checkCount++;
@@ -149,7 +149,7 @@
           let colDiff = Math.abs(col - col1);
 
           if ((rowDiff === 1 && colDiff === 0) || (rowDiff === 0 && colDiff === 1)) {
-              console.log("can smell triggered");
+              console.log("can smell it");
               document.getElementById("help").textContent = 'Can smell it';
           }
           else if (rowDiff + colDiff === 2) {
@@ -163,44 +163,6 @@
           penalty += 2;
           id_penalty.innerHTML = `Penalty is ${penalty}`;
       }
-
-      function bonusGame(){
-          treasureLocation = Math.floor(Math.random() * 25);
-          trapLocation = Math.floor(Math.random() * 25);
-          for(let i=0; i<24; i++){
-              if(i === trapLocation){
-                  id = document.getElementById(ids[i]);
-                  id.src = "trap.jpg";
-              }
-              else if(i === treasureLocation){
-                  id = document.getElementById(ids[i]);
-                  id.src = "gold-treasure.jpg";
-              }
-              else{
-                  id = document.getElementById(ids[i]);
-                  id.src = "Location.jpg";
-              }
-
-          }
-      }
-      id_location.innerHTML = `Number of locations checked is  ${checkCount}`;
-      id_penalty.innerHTML = `Penalty is ${penalty}`;
-  </script>
-</body>
-</html>
-	
-
-<script>
-	function makeNewDiv(){
-		
-		let element = document.createElement("div")
-		element.innerHTML = "an item after 3"
-		element.style.color = "orange"
-
-		let container = document.getElementById('target')
-		container.appendChild(element)
-		
-	}
 </script>
 
 </body>
