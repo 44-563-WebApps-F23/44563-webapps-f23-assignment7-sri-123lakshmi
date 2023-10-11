@@ -93,103 +93,101 @@
         
     </div>
 </div>
-    <div>
-     <button onclick="bonusGame()">Bonus Game</button>
-    </div>
-  <script>
-      var ids = [ "loc0" ,"loc1" ,"loc2" ,"loc3" ,"loc4" ,
-                  "loc5" ,"loc6" ,"loc7" ,"loc8" ,"loc9" , 
-                  "loc10","loc11","loc12","loc13","loc14", 
-                  "loc15","loc16","loc17","loc18","loc19", 
-                  "loc20","loc21","loc22","loc23","loc24"];
-      var checkCount = 0;
-      var penalty = 0;
-      var lastCheck = 0;
-      var treasureLocation = 5;
-      var trapLocation = 18;
-      var gameOver = false;
+<div>
+    <button onclick="bonusGame()">Bonus Game</button>
+</div>
+<script>
+    var ids = [ "loc0" ,"loc1" ,"loc2" ,"loc3" ,"loc4" ,
+                "loc5" ,"loc6" ,"loc7" ,"loc8" ,"loc9" , 
+                "loc10","loc11","loc12","loc13","loc14", 
+                "loc15","loc16","loc17","loc18","loc19", 
+                "loc20","loc21","loc22","loc23","loc24"];
+    var checkCount = 0;
+    var penalty = 0;
+    var lastCheck = 0;
+    var treasureLocation = 5;
+    var trapLocation = 18;
+    var gameOver = false;
 
-      function check(position) {
+    function check(position) {
 
-          if (gameOver) {
-              return;
-          }
-          var id = ids[position];
-          var img = document.getElementById(id);
-
-          if (position == treasureLocation) {
-              img.src = "Treasure.jpeg";
-              gameOver = true;
-              penalty = penalty - 3;
-          }
-          else if (position == trapLocation) {
-              img.src = "trap.jpg";
-              gameOver = true;
-              penalty = penalty + 4;
-          }
-          else {
-              img.src = "hat.jpg";
-          }
-
-          checkCount++;
-          penalty++;
-          var id_location = document.getElementById("locations");
-          id_penalty = document.getElementById("penalty");
-          id_location.innerHTML = `Number of locations checked is  ${checkCount}`;
-          id_penalty.innerHTML = `Penalty is ${penalty}`;
-          lastCheck = position;
-      }
-
-      function help() {
-
-          console.log("triggered");
-          let col = treasureLocation % 5;
-          let row = Math.floor((treasureLocation) / 5);
-          let col1 = lastCheck % 5;
-          let row1 = Math.floor((lastCheck) / 5);
-
-          let rowDiff = Math.abs(row - row1);
-          let colDiff = Math.abs(col - col1);
-
-          if ((rowDiff === 1 && colDiff === 0) || (rowDiff === 0 && colDiff === 1)) {
-              console.log("can smell it");
-              document.getElementById("help").textContent = 'Can smell it';
-          }
-          else if (rowDiff + colDiff === 2) {
-              console.log("close matie");
-              document.getElementById("help").textContent = 'Close Matie';
-          }
-          else {
-              console.log("step faster");
-              document.getElementById("help").textContent = 'Step Faster';
-          }
-          penalty += 2;
-          id_penalty.innerHTML = `Penalty is ${penalty}`;
-      }
-      
-      function bonusGame(){
-            treasureLocation = Math.floor(Math.random() * 25);
-            trapLocation = Math.floor(Math.random() * 25);
-            for(let i=0; i<24; i++){
-                if(i === trapLocation){
-                    id = document.getElementById(ids[i]);
-                    id.src = "trap.jpg";
-                }
-                else if(i === treasureLocation){
-                    id = document.getElementById(ids[i]);
-                    id.src = "Treasure.jpeg";
-                }
-                else{
-                    id = document.getElementById(ids[i]);
-                    id.src = "treasure location.jpeg";
-                }
-
-            }
+        if (gameOver) {
+            return;
         }
+        var id = ids[position];
+        var img = document.getElementById(id);
+
+        if (position == treasureLocation) {
+            img.src = "Treasure.jpeg";
+            gameOver = true;
+            penalty = penalty - 3;
+        }
+        else if (position == trapLocation) {
+            img.src = "trap.jpg";
+            gameOver = true;
+            penalty = penalty + 4;
+        }
+        else {
+            img.src = "hat.jpg";
+        }
+
+        checkCount++;
+        penalty++;
+        var id_location = document.getElementById("locations");
+        id_penalty = document.getElementById("penalty");
         id_location.innerHTML = `Number of locations checked is  ${checkCount}`;
-        id_penalty.innerHTML = `Penalty is ${penalty};
-        </script>
+        id_penalty.innerHTML = `Penalty is ${penalty}`;
+        lastCheck = position;
+    }
 
+    function help() {
 
+        console.log("triggered");
+        let col = treasureLocation % 5;
+        let row = Math.floor((treasureLocation) / 5);
+        let col1 = lastCheck % 5;
+        let row1 = Math.floor((lastCheck) / 5);
+
+        let rowDiff = Math.abs(row - row1);
+        let colDiff = Math.abs(col - col1);
+
+        if ((rowDiff === 1 && colDiff === 0) || (rowDiff === 0 && colDiff === 1)) {
+            console.log("can smell it");
+            document.getElementById("help").textContent = 'Can smell it';
+        }
+        else if (rowDiff + colDiff === 2) {
+            console.log("close matie");
+            document.getElementById("help").textContent = 'Close Matie';
+        }
+        else {
+            console.log("step faster");
+            document.getElementById("help").textContent = 'Step Faster';
+        }
+        penalty += 2;
+        id_penalty.innerHTML = `Penalty is ${penalty}`;
+    }
+
+    function bonusGame(){
+        treasureLocation = Math.floor(Math.random() * 25);
+        trapLocation = Math.floor(Math.random() * 25);
+        for(let i=0; i<24; i++){
+            if(i === trapLocation){
+                id = document.getElementById(ids[i]);
+                id.src = "trap.jpg";
+            }
+            else if(i === treasureLocation){
+                id = document.getElementById(ids[i]);
+                id.src = "Treasure.jpeg";
+            }
+            else{
+                id = document.getElementById(ids[i]);
+                id.src = "treasure location.jpeg";
+            }
+
+        }
+    }
+    id_location.innerHTML = `Number of locations checked is  ${checkCount}`;
+    id_penalty.innerHTML = `Penalty is ${penalty}`;
+</script>
 </body>
 </html>
