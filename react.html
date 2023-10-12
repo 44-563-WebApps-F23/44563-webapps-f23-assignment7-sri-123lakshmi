@@ -14,41 +14,54 @@
     </head>
     <body>
 
-        <h2>Arthimalla Srilakshmi speed check</h2>
+        <h1>Arthimalla Srilakshmi speed check</h1>
+    <div id="target">Your Time:</div>
+    <div id="counter">Count:</div>
 
-        <div id="target">Your time</div>
-        <div id="counter">Count</div>
-
-        <button id="startTimer" onclick="startTime()">Start Timer</button>
-        <button id="react" onclick="recordTime()">React</button>
+    <div class="container text-center">
+        <button type="button" class="btn btn-success" onclick="startTime()">Start Timer</button>
+        <button type="button" class="btn btn-success" onclick="recordTime()">React</button>
+    </div>
   
-        <script> 
-            var reactTime = undefined;
+ 
+  
+  <script> 
 
-            function recordTime() {
-                reactTime = Date.now();
-                document.getElementById("react").innerHTML = reactTime;
-            }
-            function startTime() {
-                console.log("Getting form values")
-                for (let i = 0; i < 9; i++) {
-                    setTimeout(function() {
-                        document.getElementById("counter").innerHTML = i;
-                    }, ((Math.floor(Math.random() * (10 - 2 + 1)) + 2 - i) * 1000));
-                }
+  let reactTime = undefined;
+  function recordTime()
+  {
+    reactTime = Date.now()
+    console.log("Current time in milli seconds: "+reactTime)
+  }
 
-                setTimeout(function() {
-                    if (reactTime === undefined) {
-                        document.getElementById("target").innerHTML = 'Too Slow';
-                    } 
-                    else {
-                        endTime = Date.now();
-                        elapsedTime = endTime - reactTime;
-                        document.getElementById("target").innerHTML = `Time was ${elapsedTime} milliseconds`;
-                    }
-                }, Math.floor(Math.random() * (10 - 2 + 1)) + 2 * 1000);
-            }
-        </script>
+  function startTime()
+  {
+    reactTime = undefined;
+    endTime = Date.now();
+    let randomCountDown = Math.round(Math.random() * (10 - 2) + 2)
+    for(let i=0;i<randomCountDown;i++)
+    {
+        setTimeout( function () {
+            document.getElementById('counter').innerHTML = `Count: ${i}`
+        } , (randomCountDown-i)*1000)
+    }
+    setTimeout( function () {document.getElementById('counter').innerHTML = `Count: ${i}`} , 8000)
+    setTimeout(function()
+    {
+        if (reactTime == undefined) 
+        {
+            document.getElementById("target").innerHTML = "Too Slow";
+        }
+        else
+        {
+            const elapsed_time =Math.abs(endTime-reactTime)
+            document.getElementById("target").innerHTML="Time was "+elapsed_time
+        }
+    },8000)
 
-    </body>
+  }
+
+  </script>
+
+</body>
 </html>
